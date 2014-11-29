@@ -30,8 +30,8 @@ Usage:
 Example:
 
     An example input file with chromosome sequences in FASTA format is in Data/
-    in this FASTA_TOOLS repository. Assuming that FASA_TOOLS repository was
+    in this FASTA_TOOLS repository. Assuming that FASTA_TOOLS repository was
     cloned into home directory, an example usage can be:
-    
+   
     $ cd ~
     $ perl ~/FASTA_TOOLS/get_chr_lengths.pl -fa FASTA_TOOLS/Data/example_chromosomes.fa > example.tab
