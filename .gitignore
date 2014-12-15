@@ -1,3 +1,6 @@
+#Rsync to local folders
+00_rsync_to_local.sh
+
 /blib/
 /.build/
 _build/
