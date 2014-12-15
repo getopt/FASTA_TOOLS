@@ -30,7 +30,7 @@ sub readfasta {
     while(<FASTA>){
        chomp $_;
         if($_=~/^>/){
-            # to peserve the whole id line 
+            # to preserve the whole id line 
             $id = $_;
 
             # # to leave only the first word in a tab separated id line

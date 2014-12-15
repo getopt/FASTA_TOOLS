@@ -31,7 +31,10 @@ my $fasta = readfasta($fasta_file);
 print "ref_id\tref_length\tword\tcount\n";
 
 # count words
-foreach my $id (keys %{$fasta}){   
+foreach my $id (keys %{$fasta}){
+
+    print STDERR "Working on <$id>\n";
+
     my $ref = $fasta->{$id};
 
     if(length($ref) < length($seq)){
@@ -40,11 +43,16 @@ foreach my $id (keys %{$fasta}){
         next;
     }
 
-
-    my $count = 0;
-    while($ref =~ /$seq/gi){
-        $count++;
-    } 
+    my $count = () = $ref =~ /$seq/gi; 
+    
+    # ## this works but is much slower than the above solution
+    # my $count = 0;
+    # while($ref =~ /$seq/gi){
+    #     $count++;
+    #     if( $count % 100000 == 0 ){
+    #         print STDERR "...counted $count occurences of $seq\n";
+    #     }
+    # } 
 
     print $id,          "\t";
     print length($ref), "\t";
@@ -62,7 +70,7 @@ sub readfasta {
     while(<FASTA>){
        chomp $_;
         if($_=~/^>/){
-            # to peserve the whole id line 
+            # to preserve the whole id line 
             $id = $_;
 
             # # to leave only the first word in a tab separated id line
@@ -75,7 +83,7 @@ sub readfasta {
             $fasta{$id}="";
         }else{
             my $tmp=$_;
-            $tmp=~ s/U/T/g;
+            # $tmp=~ s/U/T/g;
             $tmp=uc($tmp);  ### all into uppercase
             $fasta{$id} .= $tmp;
         }
@@ -83,3 +91,5 @@ sub readfasta {
     close FASTA;
     return(\%fasta);
 }
+
+print "Program finished successfully.\n";
